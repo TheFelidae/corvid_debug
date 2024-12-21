@@ -1,5 +1,9 @@
 use std::{collections::HashMap, fmt::{Display, Formatter}, sync::{RwLock, RwLockReadGuard}};
 
+/* -------------------------------------------------------------------------- */
+/*                          Time Recording Utilities                          */
+/* -------------------------------------------------------------------------- */
+
 /// Represents a snapshot of a profiled section of code.
 #[derive(Debug, Clone)]
 pub struct Snap {
@@ -303,6 +307,11 @@ mod monitor_unit_tests {
     }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  Profiler                                  */
+/* -------------------------------------------------------------------------- */
+
+#[derive(Resource)]
 pub struct Profiler {
     pub monitors: HashMap<String, Monitor>
 }
@@ -338,5 +347,60 @@ mod profiler_unit_tests {
         let mut profiler = Profiler::new();
         let monitor = profiler.monitor("test");
         assert_eq!(monitor.name, "test");
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Profiler Presentation                           */
+/* -------------------------------------------------------------------------- */
+
+use bevy::prelude::{Commands, Resource};
+use egui::Ui;
+
+use crate::ui::CorvidUi;
+
+use super::CorvidModule;
+
+#[derive(Default)]
+pub struct ProfilerModule {
+
+}
+
+impl ProfilerModule {
+    pub fn new() -> Self {
+        ProfilerModule {
+
+        }
+    }
+}
+
+impl CorvidModule for ProfilerModule {
+    fn id(&self) -> &str {
+        "corvid.profiler"
+    }
+    fn description(&self) -> &str {
+        "A module for profiling the performance of the application."
+    }
+
+    fn draw_settings(&self, ui: &mut egui::Ui) {
+        ui.label("Settings");
+    }
+
+    fn update(&mut self) {
+
+    }
+    
+    fn build(&self, app: &mut bevy::prelude::App) {
+        app.insert_resource(Profiler::new());
+    }
+}
+
+impl CorvidUi for ProfilerModule {
+    fn title(&self) -> &str {
+        "Profiler"
+    }
+
+    fn draw(&self, commands: &Commands, ui: &mut Ui) {
+        ui.label("Profiler");
     }
 }

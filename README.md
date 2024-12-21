@@ -2,7 +2,7 @@
 
 Corvid Debug is a tool that helps with debugging [Bevy Engine](https://bevyengine.org/) software, made in Rust.
 
-This project was split from [Starlight Engine](https://github.com/Mad-Star-Studio/Starlight), a game engine that is currently in development.
+This project was split from [Starlight Engine](https://github.com/Mad-Star-Studio/Starlight), a voxel game engine that is currently in development which uses Bevy Engine.
 
 ## Features
 

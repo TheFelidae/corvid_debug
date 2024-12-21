@@ -4,10 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = {version = "0.15.0", optional = true }
-bevy_egui = { version = "0.31.1", optional = true }
+bevy = {version = "0.15.0" }
+bevy_egui = { version = "0.31.1" }
 egui = { version = "0.30.0" }
-
-[features]
-default = ["bevy_engine"]
-bevy_engine = ["dep:bevy", "dep:bevy_egui"]
